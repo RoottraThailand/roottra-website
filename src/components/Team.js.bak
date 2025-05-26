@@ -1,0 +1,66 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = require("react");
+var framer_motion_1 = require("framer-motion");
+// Placeholder team data - easily editable
+var teamMembers = [
+    {
+        id: 1,
+        name: 'Sky Wiet',
+        title: 'Co - Founder & CEO',
+        bio: 'With over 15 years of experience in sustainability and technology, Jane leads our mission to transform climate data systems.',
+        imageUrl: 'https://i.postimg.cc/W1ws54Sp/Sky-Wiet.jpg',
+        linkedinUrl: 'https://www.linkedin.com/in/skywiet/'
+    },
+    {
+        id: 2,
+        name: 'Tim Luckit',
+        title: 'CO - Founder & CTO',
+        bio: 'Michael brings extensive expertise in blockchain technology and data systems to drive our innovative technical solutions.',
+        imageUrl: 'https://i.postimg.cc/MKjkFGZ2/Tim-Luckit.jpg',
+        linkedinUrl: 'https://www.linkedin.com/in/tim-luckit-0a0465108/'
+    },
+    {
+        id: 3,
+        name: 'Seth Elton',
+        title: 'Co- Founder & COO',
+        bio: 'With a background in environmental science and carbon markets, Sarah ensures our solutions deliver real-world impact.',
+        imageUrl: 'https://i.postimg.cc/B6ZmBgpp/Whats-App-Image-2024-08-14-at-15-19-52.jpg',
+        linkedinUrl: 'https://www.linkedin.com/in/seth-elton-2992b773/'
+    }
+];
+var Team = function () {
+    return (<section id="team" className="py-20 bg-gray-900 text-white">
+      <div className="container mx-auto px-4">
+        <framer_motion_1.motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">OUR TEAM</h2>
+          <div className="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
+          <p className="max-w-2xl mx-auto text-lg text-gray-300">
+            Our team of experts is dedicated to revolutionizing how climate data is collected, verified, and utilized.
+          </p>
+        </framer_motion_1.motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {teamMembers.map(function (member, index) { return (<framer_motion_1.motion.div key={member.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: index * 0.2 }} viewport={{ once: true }} className="bg-black/50 backdrop-blur-sm rounded-lg overflow-hidden border border-green-900/30 hover:border-green-500/50 transition-all duration-300">
+              <div className="relative h-64 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                  <div className="tech-border"></div>
+                </div>
+              </div>
+              
+              <div className="p-6 relative">
+                <div className="circuit-lines"></div>
+                <h3 className="text-xl font-bold mb-1 text-green-400">{member.name}</h3>
+                <p className="text-sm text-gray-400 mb-4">{member.title}</p>
+                <p className="text-gray-300">{member.bio}</p>
+              </div>
+            </framer_motion_1.motion.div>); })}
+        </div>
+      </div>
+      
+      <style jsx>{"\n        .tech-border {\n          position: absolute;\n          bottom: 0;\n          left: 0;\n          width: 100%;\n          height: 2px;\n          background: linear-gradient(90deg, transparent, #00ff00, transparent);\n        }\n        \n        .circuit-lines {\n          position: absolute;\n          top: 0;\n          right: 0;\n          width: 60px;\n          height: 60px;\n          opacity: 0.2;\n          background-image: \n            linear-gradient(to right, #00ff00 1px, transparent 1px),\n            linear-gradient(to bottom, #00ff00 1px, transparent 1px);\n          background-size: 10px 10px;\n        }\n      "}</style>
+    </section>);
+};
+exports.default = Team;

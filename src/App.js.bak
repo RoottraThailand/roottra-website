@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = require("react");
+var Hero_1 = require("./components/Hero");
+var Mission_1 = require("./components/Mission");
+var Vision_1 = require("./components/Vision");
+var Team_1 = require("./components/Team");
+var Footer_1 = require("./components/Footer");
+require("./App.css");
+function App() {
+    return (<div className="App">
+      <Hero_1.default />
+      <Mission_1.default />
+      <Vision_1.default />
+      <Team_1.default />
+      <Footer_1.default />
+    </div>);
+}
+exports.default = App;
