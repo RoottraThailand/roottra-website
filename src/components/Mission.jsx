@@ -6,11 +6,11 @@ const Mission = () => {
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/image (4).jpg" 
-          alt="Farmer with field burning in background" 
-          className="absolute inset-0 w-full h-full object-cover opacity-15"
+          src="farmer_in_field.jpeg" 
+          alt="Farmer In Smoking Field" 
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-85"></div>
+        <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
