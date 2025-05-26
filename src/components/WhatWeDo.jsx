@@ -19,7 +19,7 @@ const WhatWeDo = () => {
     {
       id: 3,
       icon: 'flame',
-      title: 'field_burning.jpeg',
+      title: 'Open Field Burning',
       description:
         'Our technologies offer alternatives to open field burning, reducing emissions while maintaining agricultural productivity.',
     },
