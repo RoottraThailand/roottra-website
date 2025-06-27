@@ -15,7 +15,7 @@ const MVPShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">MVP PROTOTYPE</h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8" />
           <p className="max-w-2xl mx-auto text-lg text-gray-300">
-            Our working MVP integrates IoT hardware, blockchain hashing, and real-time environmental data pipelines — fully deployed in and accessible 24/7 in Thailand.
+            Our working MVP integrates IoT hardware, blockchain hashing, and real-time environmental data pipelines — fully deployed in Thailand, with high integrity data accessible 24/7.
           </p>
         </motion.div>
 
