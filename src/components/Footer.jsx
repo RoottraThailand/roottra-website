@@ -14,7 +14,7 @@ const Footer = () => {
             <div>
               <h3 className="text-green-500 font-bold mb-4">Contact</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>info@roottra.com</li>
+                <li>seth@roottra.com</li>
               </ul>
             </div>
           </div>
