@@ -6,7 +6,7 @@ const Footer = () => {
           <div className="mb-8 md:mb-0">
             <img src="/logo.png" alt="Roottra Logo" className="h-16 mb-4" />
             <p className="text-gray-400 max-w-md">
-              Transforming climate data for a sustainable future through transparent, secure, and interoperable technologies.
+              Root Tra - Transforming climate data for a sustainable future through transparent, secure, and interoperable technologies.
             </p>
           </div>
 
