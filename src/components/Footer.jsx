@@ -22,7 +22,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-500">
-            © {new Date().getFullYear()} Roottra. All rights reserved.
+            © {new Date().getFullYear()} Root Tra. All rights reserved.
           </p>
         </div>
       </div>
