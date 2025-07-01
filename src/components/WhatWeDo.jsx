@@ -55,7 +55,7 @@ const WhatWeDo = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">What We Do</h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
           <p className="max-w-3xl mx-auto text-xl text-gray-200">
-            Leveraging blockchain technology and data to create sustainable solutions for farmers and our environment.
+            At Root Tra, we leverage blockchain technology, data and Edge Devices to create sustainable solutions for farmers and our environment.
           </p>
         </motion.div>
 
