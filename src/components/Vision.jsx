@@ -76,7 +76,7 @@ const Vision = () => {
             <div className="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-green-500 opacity-30"></div>
             <div className="bg-black/50 backdrop-blur-sm p-8 rounded-lg relative z-10">
               <p className="text-2xl font-light leading-relaxed">
-                To be the global standard for trusted climate data systems—driving a future where every environmental project is verifiable, efficient, and financially viable.
+                To define the global infrastructure for verifiable climate data — unlocking new value for carbon markets, environmental assets, and project developers worldwide.
               </p>
             </div>
           </motion.div>
