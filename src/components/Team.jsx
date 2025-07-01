@@ -5,7 +5,7 @@ const teamMembers = [
     id: 1,
     name: 'Sky Wiet',
     title: 'Co - Founder & CEO',
-    bio: 'With over 25 years of experience in sustainability and technology, Sky leads our mission to transform climate data systems.',
+    bio: 'With over 25 years of global experience in sustainability, climate policy, and technology, Sky leads Root Tra with a mission to transform how climate data is verified and valued. His leadership bridges international climate goals with local action, delivering scalable solutions in biochar and carbon credit systems.',
     imageUrl: 'https://i.postimg.cc/W1ws54Sp/Sky-Wiet.jpg',
     linkedinUrl: 'https://www.linkedin.com/in/skywiet/',
   },
