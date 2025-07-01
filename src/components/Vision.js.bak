@@ -13,7 +13,7 @@ var Vision = function () {
         <div className="flex flex-col items-center">
           <framer_motion_1.motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="max-w-3xl text-center mb-12">
             <p className="text-2xl font-light leading-relaxed">
-              To be the global standard for trusted climate data systems—driving a future where every environmental project is verifiable, efficient, and financially viable.
+              To be the global standard for trusted climate data systems. Root Tra is driving a future where every environmental project is verifiable, efficient, and financially viable.
             </p>
           </framer_motion_1.motion.div>
           
