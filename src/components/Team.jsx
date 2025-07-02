@@ -6,7 +6,7 @@ const teamMembers = [
     name: 'Sky Wiet',
     title: 'Co - Founder & CEO',
     bio: 'With over 25 years of global experience in sustainability, climate policy, and technology, Sky leads Root Tra with a mission to transform how climate data is verified and valued. His leadership bridges international climate goals with local action, delivering scalable solutions in biochar and carbon credit systems.',
-    imageUrl: 'https://i.postimg.cc/W1ws54Sp/Sky-Wiet.jpg',
+    imageUrl: 'https://i.postimg.cc/3xhKYx01/Sky-Wiet-CEO-Root-Tra.jpg',
     linkedinUrl: 'https://www.linkedin.com/in/skywiet/',
   },
   {
@@ -14,15 +14,15 @@ const teamMembers = [
     name: 'Tim Luckit',
     title: 'Co - Founder & CTO',
     bio: 'With a background in physics and over a decade building digital systems, Tim architects Root Tra’s IoT, blockchain, and AI infrastructure. He ensures our tech is scalable, secure, and built for measurable impact — empowering climate transparency and biochar verification at the farm level.',
-    imageUrl: 'https://i.postimg.cc/MKjkFGZ2/Tim-Luckit.jpg',
+    imageUrl: 'https://i.postimg.cc/2y0s4CSp/Tim-Luckit-CTO-Root-Tra.jpg',
     linkedinUrl: 'https://www.linkedin.com/in/tim-luckit-0a0465108/',
   },
   {
     id: 3,
     name: 'Seth Elton',
-    title: 'Co- Founder & COO',
+    title: 'Co - Founder & COO',
     bio: 'Seth brings deep operational and entrepreneurial expertise from logistics and circular economy ventures. At Root Tra, he oversees ground operations across Thailand, ensuring that our biochar supply chains, farmer partnerships, and carbon data pathways are inclusive, efficient, and audit-ready.',
-    imageUrl: 'https://i.postimg.cc/B6ZmBgpp/Whats-App-Image-2024-08-14-at-15-19-52.jpg',
+    imageUrl: 'https://i.postimg.cc/JhwY9sy7/Seth-Elton-COO-Root-Tra.jpg',
     linkedinUrl: 'https://www.linkedin.com/in/seth-elton-2992b773/',
   },
 ];
