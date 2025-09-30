@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import mvpImage from '../assets/MVP.jpg'; // ✅ no typos, no folder nesting issues
+import mvpImage from '../assets/MVP.png'; // ✅ no typos, no folder nesting issues
 
 const MVPShowcase = () => {
   return (
@@ -12,7 +12,7 @@ const MVPShowcase = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">Root Tra Tech</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">Root Tra Tech Stack</h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8" />
           <p className="max-w-2xl mx-auto text-lg text-gray-300">
             Our technology combines Edge devices, immutable hashing, and real-time data processing — providing Ground Truth agricultural intelligence, bringing the highest level of carbon credibility to the carbon market.
