@@ -22,7 +22,7 @@ const teamMembers = [
     name: 'Seth Elton',
     title: 'Co - Founder & COO',
     bio: 'Seth brings deep operational and entrepreneurial expertise from logistics and circular economy ventures. At Root Tra, he oversees ground operations across Thailand, ensuring that our biochar supply chains, farmer partnerships, and carbon data pathways are inclusive, efficient, and audit-ready.',
-    imageUrl: 'https://i.postimg.cc/JhwY9sy7/Seth-Elton-COO-Root-Tra.jpg',
+    imageUrl: 'https://i.postimg.cc/SsnPXvfT/seth-coo-new.png',
     linkedinUrl: 'https://www.linkedin.com/in/seth-elton-2992b773/',
   },
 ];
