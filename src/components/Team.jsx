@@ -14,7 +14,7 @@ const teamMembers = [
     name: 'Tim Luckit',
     title: 'Co - Founder & CTO',
     bio: 'With a background in physics and over a decade building digital systems, Tim architects Root Tra’s IoT, blockchain, and AI infrastructure. He ensures our tech is scalable, secure, and built for measurable impact — empowering climate transparency and biochar verification at the farm level.',
-    imageUrl: 'https://i.postimg.cc/2y0s4CSp/Tim-Luckit-CTO-Root-Tra.jpg',
+    imageUrl: 'https://i.postimg.cc/cJFjL8Pw/tim-luckit-cto.png',
     linkedinUrl: 'https://www.linkedin.com/in/tim-luckit-0a0465108/',
   },
   {
@@ -22,7 +22,7 @@ const teamMembers = [
     name: 'Seth Elton',
     title: 'Co - Founder & COO',
     bio: 'Seth brings deep operational and entrepreneurial expertise from logistics and circular economy ventures. At Root Tra, he oversees ground operations across Thailand, ensuring that our biochar supply chains, farmer partnerships, and carbon data pathways are inclusive, efficient, and audit-ready.',
-    imageUrl: 'https://i.postimg.cc/jqPbZDy7/seth-elton-coo-shot.png',
+    imageUrl: 'https://i.postimg.cc/SsnPXvfT/seth-coo-new.png',
     linkedinUrl: 'https://www.linkedin.com/in/seth-elton-2992b773/',
   },
 ];
