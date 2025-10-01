@@ -1,10 +1,30 @@
-import { motion } from 'framer-motion';
-import mvpImage from '../assets/MVP.png'; // ✅ no typos, no folder nesting issues
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
+// Auto-import all images inside /src/slideshow
+// MVPShowcase.jsx is in src/components, so we go up one level
+const modules = import.meta.glob("../slideshow/*.{png,jpg,jpeg,webp}", { eager: true });
+const images = Object.values(modules).map((mod) => mod.default);
+console.log("Loaded slideshow images:", images); // 👈 sanity check
 
 const MVPShowcase = () => {
+  const [current, setCurrent] = useState(0);
+
+  // ⏱ Auto-play every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+
   return (
     <section id="mvp" className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -12,26 +32,55 @@ const MVPShowcase = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">Root Tra Tech Stack</h2>
-          <div className="w-24 h-1 bg-green-500 mx-auto mb-8" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">
+            Our Work
+          </h2>
+          <div className="w-24 h-1 bg-green-500 mx-auto mb-6" />
           <p className="max-w-2xl mx-auto text-lg text-gray-300">
-            Our technology combines Edge devices, immutable hashing, and real-time data processing — providing Ground Truth agricultural intelligence, bringing the highest level of carbon credibility to the carbon market.
+            See Root Tra in action across Southeast Asia
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <img
-            src={mvpImage}
-            alt="Rootra MVP Prototype"
-            className="rounded-xl shadow-lg border border-green-900/40 max-w-3xl w-full"
+        {/* Carousel */}
+        <div className="relative max-w-3xl mx-auto">
+          <motion.img
+            key={images[current]}
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+            className="rounded-xl shadow-lg border border-green-900/40 w-full max-h-[500px] object-contain mx-auto bg-black"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
           />
-        </motion.div>
+
+          {/* Prev/Next buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-0 -translate-y-1/2 bg-black/40 px-3 py-2 rounded-r text-white hover:bg-black/70"
+          >
+            ‹
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-0 -translate-y-1/2 bg-black/40 px-3 py-2 rounded-l text-white hover:bg-black/70"
+          >
+            ›
+          </button>
+
+          {/* Dots (indicators) */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`w-3 h-3 rounded-full ${
+                  index === current ? "bg-green-500" : "bg-gray-600"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
