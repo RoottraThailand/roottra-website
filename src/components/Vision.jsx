@@ -76,7 +76,7 @@ const Vision = () => {
             <div className="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-green-500 opacity-30"></div>
             <div className="bg-black/50 backdrop-blur-sm p-8 rounded-lg relative z-10">
               <p className="text-2xl font-light leading-relaxed">
-                To define the global infrastructure for verifiable climate data — unlocking new value for carbon markets, environmental assets, and project developers worldwide.
+                Root Tra is pioneering a vertically integrated, ground-truth-first dMRV (Digital Measurement, Reporting, and Verification) system that empowers farmers, de-risks carbon investments, and directly addresses the regional PM 2.5 air pollution crisis. Our model builds the trust layer for the global carbon market, allowing us to define the global infrastructure for verifiable climate data and unlock new value for environmental assets worldwide.
               </p>
             </div>
           </motion.div>
