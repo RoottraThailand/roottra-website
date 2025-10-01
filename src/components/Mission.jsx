@@ -38,6 +38,8 @@ const Mission = () => {
             <div className="bg-black/50 backdrop-blur-sm p-8 rounded-lg relative z-10">
               <p className="text-lg leading-relaxed">
                 Root Tra exists to empower environmental integrity by transforming how climate data is collected, verified, and utilized. Through transparent, secure, and interoperable technologies, we enable organizations to build trust, optimize sustainability efforts, and drive impactful climate action.
+Today's carbon markets lack trust, and smallholder farmers are often left behind. Inefficient verification and a lack of transparent data have created a credibility crisis, while the devastating environmental and health impacts of seasonal agricultural burning continue unchecked.
+We aim to sequester 100,000 tonnes of CO2e annually by Year 5 and achieve 933-tonne annual PM 2.5 reduction.
               </p>
             </div>
           </motion.div>
