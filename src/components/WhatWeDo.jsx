@@ -5,21 +5,21 @@ const WhatWeDo = () => {
     {
       id: 1,
       icon: 'database',
-      title: 'Blockchain Carbon Tracking',
+      title: 'Distributed Ledger Technology',
       description:
         'Our proprietary blockchain solution creates immutable records of carbon reduction, ensuring transparency and trust in environmental credits.',
     },
     {
       id: 2,
       icon: 'users',
-      title: 'Smallholder Farmer Integration',
+      title: 'Smallholder Farmer Solutions',
       description:
         'We connect small-scale farmers to global carbon markets, providing them with technology and knowledge to participate in sustainable practices.',
     },
     {
       id: 3,
       icon: 'flame',
-      title: 'Open Field Burning',
+      title: 'Mitigating Open Field Burning',
       description:
         'Our technologies offer alternatives to open field burning, reducing emissions while maintaining agricultural productivity.',
     },
@@ -55,7 +55,7 @@ const WhatWeDo = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">What We Do</h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
           <p className="max-w-3xl mx-auto text-xl text-gray-200">
-            At Root Tra, we leverage blockchain technology, data and Edge Devices to create sustainable solutions for farmers and our environment.
+            At Root Tra, we utilize distributed ledger technology and Edge Devices for data management to create sustainable solutions for farmers and our environment.
           </p>
         </motion.div>
 
