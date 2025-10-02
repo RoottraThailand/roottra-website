@@ -71,7 +71,7 @@ const Targets = () => {
       <div className="container relative z-10 mx-auto px-6 text-center flex flex-col md:flex-row justify-center items-center gap-4">
         {/* Graphic 1 */}
         <motion.img
-          src="/target-co2.png"
+          src="/target-co2.webp"
           alt="CO2e Sequestration Target"
           className="w-full max-w-2xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
@@ -82,7 +82,7 @@ const Targets = () => {
 
         {/* Graphic 2 */}
         <motion.img
-          src="/target-pm25.png"
+          src="/target-pm25.webp"
           alt="PM2.5 Reduction Target"
           className="w-full max-w-2xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
