@@ -5,7 +5,7 @@ const OurStory = () => {
     <section id="our-story" className="relative py-20 text-white overflow-hidden">
       {/* Background image */}
       <img
-        src="/small-holder-farmers.webp"
+        src="/small-holder-farmers.png"
         alt="Small Holder Farmers Harvesting Sugar Cane in Thailand"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -20,9 +20,10 @@ const OurStory = () => {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto bg-black/70 backdrop-blur-sm p-8 md:p-12 rounded-lg space-y-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-green-500">
+          <h2 className="text-4xl md:text-5xl font-bold text-green-500 text-center mb-4">
             Our Story
           </h2>
+          <div className="w-24 h-1 bg-green-500 mx-auto mb-8" />
 
           <p>
             Root Tra was born at the intersection of global policy, advanced technology, and
