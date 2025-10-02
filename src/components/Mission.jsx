@@ -13,11 +13,10 @@ const Mission = () => {
           loop
           muted
           playsInline
-          preload="auto"                 // ✅ helps on mobile
-          disablePictureInPicture        // ✅ stops iOS player UI
-          controls={false}               // ✅ no controls overlay
-          poster="/mission-fallback.jpg" // ✅ fallback image (in /public)
+          preload="auto"
+          disablePictureInPicture   // ✅ no PiP icon
           className="absolute inset-0 w-full h-full object-cover opacity-60"
+          poster="/mission-fallback.jpg"
         >
           <source src="/roottra-ai-fields.mp4" type="video/mp4" />
           Your browser does not support the video tag.
