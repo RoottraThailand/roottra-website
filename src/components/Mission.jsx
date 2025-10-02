@@ -47,7 +47,7 @@ const Mission = () => {
               <br /><br />
               Today's carbon markets lack trust, and smallholder farmers are often left behind. Inefficient verification and a lack of transparent data have created a credibility crisis, while the devastating environmental and health impacts of seasonal agricultural burning continue unchecked.
               <br /><br />
-              We aim to sequester 100,000 tonnes of CO2e annually by Year 5 and achieve 933-tonne annual PM 2.5 reduction.
+              Our targets are ambitious and achievable. The world needs it. 
             </p>
           </div>
         </motion.div>
