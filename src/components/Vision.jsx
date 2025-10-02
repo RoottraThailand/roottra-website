@@ -1,9 +1,106 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const Vision = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Particle class
+    class Particle {
+      x;
+      y;
+      size;
+      speedX;
+      speedY;
+      color;
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = `rgba(0, ${Math.floor(Math.random() * 100) + 155}, ${
+          Math.floor(Math.random() * 50)
+        }, ${Math.random() * 0.5 + 0.1})`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particleArray = [];
+    const numberOfParticles = 80;
+    for (let i = 0; i < numberOfParticles; i++) {
+      particleArray.push(new Particle());
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particleArray.length; a++) {
+        for (let b = a; b < particleArray.length; b++) {
+          const dx = particleArray[a].x - particleArray[b].x;
+          const dy = particleArray[a].y - particleArray[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            ctx.strokeStyle = `rgba(0, ${Math.floor(Math.random() * 100) + 155}, ${
+              Math.floor(Math.random() * 50)
+            }, 0.1)`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particleArray[a].x, particleArray[a].y);
+            ctx.lineTo(particleArray[b].x, particleArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particleArray.length; i++) {
+        particleArray[i].update();
+        particleArray[i].draw();
+      }
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <section id="vision" className="py-20 bg-black text-white">
-      <div className="container mx-auto px-4">
+    <section id="vision" className="py-20 bg-black text-white relative overflow-hidden">
+      {/* Floating particle background */}
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -15,56 +112,24 @@ const Vision = () => {
           <div className="w-24 h-1 bg-green-500 mx-auto"></div>
         </motion.div>
 
+        {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Replace globe with image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="w-full max-w-4xl order-2 lg:order-1"
+            className="w-full max-w-4xl order-2 lg:order-1 flex justify-center"
           >
-            <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-blue-900/30"></div>
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="globe-visualization">
-                  <div className="globe-container">
-                    <div className="globe"></div>
-                    <div className="globe-overlay"></div>
-                    <div className="data-points">
-                      {Array.from({ length: 10 }).map((_, i) => (
-                        <div 
-                          key={i} 
-                          className="data-point"
-                          style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <div className="data-connections">
-                      {Array.from({ length: 15 }).map((_, i) => (
-                        <div 
-                          key={i} 
-                          className="data-connection"
-                          style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            width: `${Math.random() * 100 + 50}px`,
-                            transform: `rotate(${Math.random() * 360}deg)`,
-                            animationDelay: `${Math.random() * 5}s`
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img 
+              src="/roottra-node-rice.png" 
+              alt="Roottra Node in Rice Field" 
+              className="rounded-lg shadow-lg max-h-96 object-contain"
+            />
           </motion.div>
 
+          {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -72,85 +137,19 @@ const Vision = () => {
             viewport={{ once: true }}
             className="relative order-1 lg:order-2"
           >
-            <div className="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-green-500 opacity-30"></div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-green-500 opacity-30"></div>
             <div className="bg-black/50 backdrop-blur-sm p-8 rounded-lg relative z-10">
               <p className="text-2xl font-light leading-relaxed">
-                Root Tra is pioneering a vertically integrated, ground-truth-first dMRV (Digital Measurement, Reporting, and Verification) system that empowers farmers, de-risks carbon investments, and directly addresses the regional PM 2.5 air pollution crisis. Our model builds the trust layer for the global carbon market, allowing us to define the global infrastructure for verifiable climate data and unlock new value for environmental assets worldwide.
+                Root Tra is pioneering a vertically integrated, ground-truth-first dMRV 
+                (Digital Measurement, Reporting, and Verification) system that empowers farmers, 
+                de-risks carbon investments, and directly addresses the regional PM 2.5 air pollution crisis. 
+                Our model builds the trust layer for the global carbon market, allowing us to define the 
+                global infrastructure for verifiable climate data and unlock new value for environmental 
+                assets worldwide.
               </p>
             </div>
           </motion.div>
         </div>
       </div>
-
-      <style>{`
-        .globe-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-
-        .globe {
-          position: absolute;
-          width: 200px;
-          height: 200px;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-          background: radial-gradient(circle at 30% 30%, #1a5c1a, #0a380a);
-          box-shadow: 0 0 60px rgba(0, 255, 0, 0.2);
-          animation: rotate 20s linear infinite;
-        }
-
-        .globe-overlay {
-          position: absolute;
-          width: 200px;
-          height: 200px;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-          background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='rgba(0,255,0,0.2)' stroke-width='0.5'%3E%3C/path%3E%3Cpath d='M0,20 L100,20 M0,40 L100,40 M0,60 L100,60 M0,80 L100,80 M20,0 L20,100 M40,0 L40,100 M60,0 L60,100 M80,0 L80,100' stroke='rgba(0,255,0,0.1)' stroke-width='0.2'%3E%3C/path%3E%3C/svg%3E");
-          opacity: 0.5;
-          animation: rotate 15s linear infinite reverse;
-        }
-
-        .data-point {
-          position: absolute;
-          width: 6px;
-          height: 6px;
-          background-color: #00ff00;
-          border-radius: 50%;
-          box-shadow: 0 0 10px #00ff00;
-          animation: pulse 3s infinite;
-        }
-
-        .data-connection {
-          position: absolute;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, #00ff00, transparent);
-          opacity: 0;
-          animation: fadeInOut 4s infinite;
-        }
-
-        @keyframes rotate {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.7; }
-          50% { transform: scale(1.5); opacity: 1; }
-          100% { transform: scale(1); opacity: 0.7; }
-        }
-
-        @keyframes fadeInOut {
-          0% { opacity: 0; }
-          50% { opacity: 0.8; }
-          100% { opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 };
