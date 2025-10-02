@@ -2,7 +2,7 @@ const LandscapeSection = () => {
   return (
     <section className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
       <img 
-        src="/MVP.png"  // make sure this file is in your public/ folder
+        src="/MVP.webp"  // make sure this file is in your public/ folder
         alt="RootTra Landscape"
         className="absolute inset-0 w-full h-full object-cover"
       />
