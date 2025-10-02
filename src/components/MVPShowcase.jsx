@@ -1,27 +1,48 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Auto-import all .webp images inside /src/slideshow
-const modules = import.meta.glob("../slideshow/*.webp", { eager: true });
+// Auto-import all images inside /src/slideshow
+const modules = import.meta.glob("../slideshow/*.{png,jpg,jpeg,webp}", { eager: true });
 const images = Object.values(modules).map((mod) => mod.default);
-console.log("Loaded slideshow images:", images); // sanity check
+console.log("Loaded slideshow images:", images);
 
-const MVPShowcase = () => {
+const OurWork = () => {
   const [current, setCurrent] = useState(0);
+  const intervalRef = useRef(null);
 
-  // ⏱ Auto-play every 5 seconds
+  // Preload images into memory
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
   }, []);
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  // Autoplay with reset
+  useEffect(() => {
+    startAutoplay();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const startAutoplay = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 5000);
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % images.length);
+    startAutoplay();
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    startAutoplay();
+  };
 
   return (
-    <section id="mvp" className="py-20 bg-gray-900 text-white">
+    <section id="ourwork" className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <motion.div
@@ -41,17 +62,19 @@ const MVPShowcase = () => {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative max-w-3xl mx-auto">
-          <motion.img
-            key={images[current]}
-            src={images[current]}
-            alt={`Slide ${current + 1}`}
-            className="rounded-xl shadow-lg border border-green-900/40 w-full max-h-[500px] object-contain mx-auto bg-black"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-          />
+        <div className="relative max-w-3xl mx-auto aspect-video">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={images[current]}
+              src={images[current]}
+              alt={`Slide ${current + 1}`}
+              className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg border border-green-900/40 bg-black"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.6 }}
+            />
+          </AnimatePresence>
 
           {/* Prev/Next buttons */}
           <button
@@ -66,23 +89,26 @@ const MVPShowcase = () => {
           >
             ›
           </button>
+        </div>
 
-          {/* Dots (indicators) */}
-          <div className="flex justify-center mt-4 space-x-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                className={`w-3 h-3 rounded-full ${
-                  index === current ? "bg-green-500" : "bg-gray-600"
-                }`}
-              />
-            ))}
-          </div>
+        {/* Dots (indicators) */}
+        <div className="flex justify-center mt-4 space-x-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrent(index);
+                startAutoplay();
+              }}
+              className={`w-3 h-3 rounded-full ${
+                index === current ? "bg-green-500" : "bg-gray-600"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default MVPShowcase;
+export default OurWork;
