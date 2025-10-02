@@ -123,7 +123,7 @@ const Vision = () => {
             className="w-full max-w-4xl order-2 lg:order-1 flex justify-center"
           >
             <img 
-              src="/roottra-node-rice.png" 
+              src="/roottra-node-rice.webp" 
               alt="Roottra Node in Rice Field" 
               className="rounded-lg shadow-lg max-h-96 object-contain"
             />
