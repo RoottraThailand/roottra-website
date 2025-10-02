@@ -1,49 +1,92 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Auto-import all images inside /src/slideshow
 const modules = import.meta.glob("../slideshow/*.{png,jpg,jpeg,webp}", { eager: true });
 const images = Object.values(modules).map((mod) => mod.default);
-console.log("Loaded slideshow images:", images);
+console.log("Loaded slideshow images:", images); // 👈 sanity check
 
 const OurWork = () => {
   const [current, setCurrent] = useState(0);
-  const intervalRef = useRef(null);
+  const canvasRef = useRef(null);
 
-  // Preload images into memory
+  // Auto-play
   useEffect(() => {
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  // Autoplay with reset
-  useEffect(() => {
-    startAutoplay();
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
-  const startAutoplay = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 5000);
-  };
+    return () => clearInterval(interval);
+  }, []);
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
-    startAutoplay();
-  };
+  // Particle background effect
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-  const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + images.length) % images.length);
-    startAutoplay();
-  };
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = `rgba(34,197,94, ${Math.random() * 0.4 + 0.2})`; // Tailwind green-500
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    const numberOfParticles = 70;
+    for (let i = 0; i < numberOfParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.fillStyle = "rgba(0,0,0,1)"; // solid black bg
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <section id="ourwork" className="py-20 bg-gray-900 text-white">
-      <div className="container mx-auto px-4">
+    <section id="ourwork" className="relative py-20 text-white overflow-hidden bg-black">
+      {/* Animated green dot background */}
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+
+      <div className="container relative z-10 mx-auto px-4">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,19 +105,17 @@ const OurWork = () => {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative max-w-3xl mx-auto aspect-video">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={images[current]}
-              src={images[current]}
-              alt={`Slide ${current + 1}`}
-              className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg border border-green-900/40 bg-black"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.6 }}
-            />
-          </AnimatePresence>
+        <div className="relative max-w-3xl mx-auto">
+          <motion.img
+            key={images[current]}
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+            className="rounded-xl shadow-lg w-full max-h-[500px] object-contain mx-auto bg-black"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
+          />
 
           {/* Prev/Next buttons */}
           <button
@@ -89,22 +130,6 @@ const OurWork = () => {
           >
             ›
           </button>
-        </div>
-
-        {/* Dots (indicators) */}
-        <div className="flex justify-center mt-4 space-x-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrent(index);
-                startAutoplay();
-              }}
-              className={`w-3 h-3 rounded-full ${
-                index === current ? "bg-green-500" : "bg-gray-600"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>
