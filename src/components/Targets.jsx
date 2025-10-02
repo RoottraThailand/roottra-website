@@ -68,12 +68,12 @@ const Targets = () => {
       {/* Animated background */}
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
 
-      <div className="container relative z-10 mx-auto px-6 text-center flex flex-col md:flex-row justify-center items-center gap-8">
+      <div className="container relative z-10 mx-auto px-6 text-center flex flex-col md:flex-row justify-center items-center gap-4">
         {/* Graphic 1 */}
         <motion.img
           src="/target-co2.png"
           alt="CO2e Sequestration Target"
-          className="w-[90%] sm:w-[80%] md:w-full md:max-w-xl lg:max-w-2xl mx-auto"
+          className="w-full max-w-2xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -84,7 +84,7 @@ const Targets = () => {
         <motion.img
           src="/target-pm25.png"
           alt="PM2.5 Reduction Target"
-          className="w-[90%] sm:w-[80%] md:w-full md:max-w-xl lg:max-w-2xl mx-auto"
+          className="w-full max-w-2xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
