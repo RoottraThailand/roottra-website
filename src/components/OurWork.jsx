@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// 🔹 Hard-coded list of .webp files in /src/slideshow/
+// 🔹 Hard-coded list of .webp files in /public/slideshow/
 const images = [
   "/slideshow/168256.webp",
   "/slideshow/168257.webp",
