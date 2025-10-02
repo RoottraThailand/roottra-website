@@ -21,7 +21,7 @@ const OurStory = () => {
           className="max-w-5xl mx-auto bg-black/70 backdrop-blur-sm p-8 md:p-12 rounded-lg space-y-6"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-green-500">
-            Our Story: Forged by Necessity, Built on Truth
+            Our Story
           </h2>
 
           <p>
