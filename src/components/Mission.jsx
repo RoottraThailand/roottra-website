@@ -10,12 +10,12 @@ const Mission = () => {
           loop 
           muted 
           playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
           <source src="/roottra-ai-fields.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-gray-900 bg-opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
