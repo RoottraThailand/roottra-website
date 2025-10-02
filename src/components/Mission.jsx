@@ -2,7 +2,10 @@ import { motion } from "framer-motion";
 
 const Mission = () => {
   return (
-    <section id="mission" className="py-20 bg-gray-900 text-white relative overflow-hidden">
+    <section
+      id="mission"
+      className="py-20 bg-gray-900 text-white relative overflow-hidden"
+    >
       {/* Background video with overlay */}
       <div className="absolute inset-0 z-0">
         <video
@@ -10,8 +13,10 @@ const Mission = () => {
           loop
           muted
           playsInline
-          preload="auto"                // ✅ preload for mobile
-          poster="/mission-fallback.jpg" // ✅ fallback image (put in /public)
+          preload="auto"                 // ✅ helps on mobile
+          disablePictureInPicture        // ✅ stops iOS player UI
+          controls={false}               // ✅ no controls overlay
+          poster="/mission-fallback.jpg" // ✅ fallback image (in /public)
           className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
           <source src="/roottra-ai-fields.mp4" type="video/mp4" />
