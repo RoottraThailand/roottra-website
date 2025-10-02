@@ -5,7 +5,7 @@ const OurStory = () => {
     <section id="our-story" className="relative py-20 text-white overflow-hidden">
       {/* Background image */}
       <img
-        src="/small-holder-farmers.png"
+        src="/small-holder-farmers.webp"
         alt="Small Holder Farmers Harvesting Sugar Cane in Thailand"
         className="absolute inset-0 w-full h-full object-cover"
       />
