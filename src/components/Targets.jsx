@@ -73,7 +73,7 @@ const Targets = () => {
         <motion.img
           src="/target-co2.webp"
           alt="CO2e Sequestration Target"
-          className="w-full max-w-2xl mx-auto"   // ⬅ bigger
+          className="w-full max-w-3xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -84,7 +84,7 @@ const Targets = () => {
         <motion.img
           src="/target-pm25.webp"
           alt="PM2.5 Reduction Target"
-          className="w-full max-w-2xl mx-auto"   // ⬅ bigger
+          className="w-full max-w-3xl mx-auto"   // ⬅ bigger
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
