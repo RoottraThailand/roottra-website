@@ -22,7 +22,10 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-500">
-            © {new Date().getFullYear()} Root Tra. All rights reserved.
+            </p>© {new Date().getFullYear()} Root Tra. All rights reserved.
+            <p className="mt-2 text-sm text-gray-600">
+            Root Tra is a registered company in Thailand and the UK.<br />
+            Thailand: 0105568086337 | UK: 16160574
           </p>
         </div>
       </div>
