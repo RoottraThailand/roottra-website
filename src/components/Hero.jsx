@@ -1,19 +1,18 @@
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const canvasRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Particle class
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -39,61 +38,109 @@ const Hero = () => {
       }
     }
 
-    const particles = [];
-    const numberOfParticles = 100;
-    for (let i = 0; i < numberOfParticles; i++) {
-      particles.push(new Particle());
-    }
-
-    function connectParticles() {
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
-          const dx = particles[a].x - particles[b].x;
-          const dy = particles[a].y - particles[b].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 100) {
-            ctx.strokeStyle = `rgba(0, ${Math.floor(Math.random() * 100) + 155}, ${
-              Math.floor(Math.random() * 50)
-            }, 0.1)`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
+    const particles = Array.from({ length: 100 }, () => new Particle());
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-      }
-      connectParticles();
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
       requestAnimationFrame(animate);
     }
-
     animate();
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleScroll = (id) => {
+    setMenuOpen(false);
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    else console.warn("⚠️ Element not found:", id);
+  };
 
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Particle background */}
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4">
-        {/* Logo */}
+      {/* ✅ Fixed Navigation Bar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-sm border-b border-green-500/20">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+          {/* Logo */}
+          <img
+            src="/logo.png"
+            alt="Root Tra Logo"
+            className="w-32 md:w-40 cursor-pointer"
+            onClick={() => handleScroll("#top")}
+          />
+
+          {/* Always-visible Hamburger */}
+          <button
+            className="flex flex-col justify-between w-8 h-6 focus:outline-none"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span
+              className={`h-1 bg-white rounded transition-transform duration-300 ${
+                menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`h-1 bg-white rounded transition-opacity duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`h-1 bg-white rounded transition-transform duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Dropdown Menu */}
+        {menuOpen && (
+          <div className="bg-black/90 backdrop-blur-md border-t border-green-500/20 text-center py-6 space-y-6">
+            {[
+              "Mission",
+              "Vision",
+              "What We Do",
+              "Our Team",
+              "Our Story",
+            ].map((label) => {
+              // ✅ Manual mapping for exact ID names
+              const idMap = {
+                "Our Story": "#our-story",
+                "Our Team": "#team",
+                "What We Do": "#what-we-do",
+                Mission: "#mission",
+                Vision: "#vision",
+              };
+              const targetId =
+                idMap[label] ||
+                `#${label.toLowerCase().replace(/ /g, "-")}`;
+
+              return (
+                <div
+                  key={label}
+                  className="text-white text-lg font-medium hover:text-green-400 cursor-pointer"
+                  onClick={() => handleScroll(targetId)}
+                >
+                  {label}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Content */}
+      <div className="relative z-10 text-center px-4 mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -102,12 +149,11 @@ const Hero = () => {
         >
           <img
             src="/logo.png"
-            alt="Roottra Logo"
+            alt="Root Tra Logo"
             className="mx-auto w-80 md:w-[28rem] lg:w-[32rem]"
           />
         </motion.div>
 
-        {/* Main heading (bold) */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,14 +163,14 @@ const Hero = () => {
           Transforming Climate Data for a Sustainable Future
         </motion.h2>
 
-        {/* Subheading (italic) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto italic"
         >
-          Pioneering ground-truth-first dMRV systems that empower farmers and build trust in carbon markets
+          Pioneering ground-truth-first dMRV systems that empower farmers and
+          build trust in carbon markets
         </motion.p>
       </div>
     </div>
