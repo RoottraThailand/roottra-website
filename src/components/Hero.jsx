@@ -82,21 +82,25 @@ const Hero = () => {
 
           {/* Always-visible Hamburger */}
           <button
-            className="flex flex-col justify-between w-8 h-6 focus:outline-none"
+            className="relative flex flex-col justify-between w-8 h-6 focus:outline-none z-[9999]"
             onClick={() => setMenuOpen(!menuOpen)}
           >
+            {/* mobile-only background circle */}
+            <span className="absolute -inset-2 rounded-full bg-black/70 border border-green-500/40 md:hidden"></span>
+  
+            {/* hamburger lines */}
             <span
-              className={`h-1 bg-white rounded transition-transform duration-300 ${
+              className={`h-1 w-6 bg-white rounded transition-transform duration-300 z-[10000] ${
                 menuOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
-              className={`h-1 bg-white rounded transition-opacity duration-300 ${
+              className={`h-1 w-6 bg-white rounded transition-opacity duration-300 z-[10000] ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`h-1 bg-white rounded transition-transform duration-300 ${
+              className={`h-1 w-6 bg-white rounded transition-transform duration-300 z-[10000] ${
                 menuOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
