@@ -1,5 +1,3 @@
-import "../styles/sugar-cane-animation.css";
-
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-12 relative overflow-hidden">
