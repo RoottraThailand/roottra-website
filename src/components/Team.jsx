@@ -34,6 +34,7 @@ const advisoryBoard = [
     id: "a1",
     name: "Apiniti Jotisankasa",
     title: "Geo Enviromental Engineer and IoT Sensors",
+    university: "Kasetsart University",
     imageUrl: "https://i.postimg.cc/7Ptq6TjG/Apiniti.jpg", // add a URL or leave blank to show placeholder
     linkedinUrl: "https://www.linkedin.com/in/apiniti-jotisankasa-287b816b/",
   },
@@ -41,6 +42,7 @@ const advisoryBoard = [
     id: "a2",
     name: "Jarudej Asingsamanunt",
     title: "Industrial Pyrolsis Engineer",
+    university: "Kasetsart University",
     imageUrl: "https://i.postimg.cc/zD2qBR43/Jarudej.jpg", // add a URL or leave blank to show placeholder
     linkedinUrl: "https://www.linkedin.com/in/jarudej-asingsamanunt/",
   },
@@ -234,11 +236,19 @@ const Team = () => {
 
                 <div className="p-5 text-center">
                   <h4 className="text-lg font-semibold text-green-400">
-                    {advisor.name || "Advisor Name"}
-                  </h4>
-                  <p className="text-sm text-gray-400 mt-1">
-                    {advisor.title || "Domain Expertise"}
+                  {advisor.name || "Advisor Name"}
+                </h4>
+
+                <p className="text-sm text-gray-400 mt-1">
+                  {advisor.title || "Domain Expertise"}
+                </p>
+
+                {advisor.university ? (
+                  <p className="text-sm text-gray-300 mt-1 italic">
+                    {advisor.university}
                   </p>
+                ) : null}
+
 
                   {advisor.linkedinUrl ? (
                     <a
