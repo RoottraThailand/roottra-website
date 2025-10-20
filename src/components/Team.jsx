@@ -121,7 +121,7 @@ const Team = () => {
 
   const PhotoFrame = ({ src, alt, isSmall = false }) => (
   <div
-    className={`relative ${isSmall ? "h-[300px] md:h-[200px]" : "h-[100px] md:h-[230px]"}
+    className={`relative ${isSmall ? "h-[300px] md:h-[200px]" : "h-[300px] md:h-[200px]"}
                 flex items-center justify-center bg-black/40 rounded-sm border border-green-900/30`}
   >
     <img
