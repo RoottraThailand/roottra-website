@@ -1,6 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+const LogoVideo = ({ className = "" }) => {
+  return (
+    <div
+      className={`mx-auto w-56 sm:w-64 md:w-80 lg:w-[28rem] ${className}`}
+      aria-label="Root Tra animated logo"
+    >
+      <video
+        src="/roottra-logo.mp4" // put your mp4 in /public with this name or change path
+        autoPlay
+        loop
+        muted
+        playsInline
+        controls={false}
+        className="w-full h-auto pointer-events-none"
+      />
+    </div>
+  );
+};
+
 const Hero = () => {
   const canvasRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,6 +58,7 @@ const Hero = () => {
     }
 
     const particles = Array.from({ length: 100 }, () => new Particle());
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => {
@@ -65,14 +85,17 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+    <div
+      id="top"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-black"
+    >
       {/* Particle background */}
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
 
-      {/* ✅ Fixed Navigation Bar */}
+      {/* Fixed Navigation Bar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-sm border-b border-green-500/20">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Logo */}
+          {/* Static logo in header */}
           <img
             src="/logo.png"
             alt="Root Tra Logo"
@@ -80,14 +103,14 @@ const Hero = () => {
             onClick={() => handleScroll("#top")}
           />
 
-          {/* Always-visible Hamburger */}
+          {/* Always-visible Hamburger (responsive) */}
           <button
             className="relative flex flex-col justify-between w-8 h-6 focus:outline-none z-[9999]"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {/* mobile-only background circle */}
             <span className="absolute -inset-2 rounded-full bg-black/70 border border-green-500/40 md:hidden"></span>
-  
+
             {/* hamburger lines */}
             <span
               className={`h-1 w-6 bg-white rounded transition-transform duration-300 z-[10000] ${
@@ -116,8 +139,8 @@ const Hero = () => {
               "What We Do",
               "Our Team",
               "Our Story",
+              "Our Work",
             ].map((label) => {
-              // ✅ Manual mapping for exact ID names
               const idMap = {
                 "Our Story": "#our-story",
                 "Our Team": "#team",
@@ -151,11 +174,8 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="mb-8"
         >
-          <img
-            src="/logo.png"
-            alt="Root Tra Logo"
-            className="mx-auto w-80 md:w-[28rem] lg:w-[32rem]"
-          />
+          {/* Large hero logo video - mobile friendly widths inside LogoVideo */}
+          <LogoVideo />
         </motion.div>
 
         <motion.h2
