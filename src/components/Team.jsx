@@ -29,13 +29,32 @@ const teamMembers = [
 ];
 
 /* Advisory board placeholders: replace name/title/imageUrl/linkedinUrl when ready */
+/* Advisory board updated with Ruy and Alex */
 const advisoryBoard = [
+  {
+    id: "a0",
+    name: "Ruy Anaya de la Rosa",
+    title: "Senior Advisor, Carbon Methodologies",
+    university: "UNFCCC Art 6.4 Mechanism",
+    imageUrl: "https://i.postimg.cc/Yh0xngZm/Ruy-Anaya-De-La-Rosa.webp",
+    linkedinUrl: "",
+    bio: "Methodological Expert Panel member for the UN Climate Change Art 6.4 Mechanism and an expert in biochar and LCA methodologies. Ruy supports the scientific rigour of our end to end carbon removal and verification system."
+  },
+  {
+    id: "a00",
+    name: "Alex Ley",
+    title: "Advisor, AI Systems and Automation",
+    university: "CEO Scrub AI",
+    imageUrl: "https://i.postimg.cc/zy9pRBdx/Alex_Ley_2.png",
+    linkedinUrl: "",
+    bio: "Co founder and CEO of Scrub AI. Alex guides scalable enterprise AI platform design to support our digital verification and climate data automation systems."
+  },
   {
     id: "a1",
     name: "Apiniti Jotisankasa",
     title: "Geo Enviromental Engineer and IoT Sensors",
     university: "Kasetsart University",
-    imageUrl: "https://i.postimg.cc/7Ptq6TjG/Apiniti.jpg", // add a URL or leave blank to show placeholder
+    imageUrl: "https://i.postimg.cc/7Ptq6TjG/Apiniti.jpg",
     linkedinUrl: "https://www.linkedin.com/in/apiniti-jotisankasa-287b816b/",
   },
   {
@@ -43,7 +62,7 @@ const advisoryBoard = [
     name: "Jarudej Asingsamanunt",
     title: "Industrial Pyrolsis Engineer",
     university: "Kasetsart University",
-    imageUrl: "https://i.postimg.cc/zD2qBR43/Jarudej.jpg", // add a URL or leave blank to show placeholder
+    imageUrl: "https://i.postimg.cc/zD2qBR43/Jarudej.jpg",
     linkedinUrl: "https://www.linkedin.com/in/jarudej-asingsamanunt/",
   },
 ];
@@ -152,7 +171,7 @@ const Team = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-500">OUR TEAM</h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8" />
           <p className="max-w-2xl mx-auto text-lg text-gray-300">
-            We are a diverse team of innovators committed to transforming the way climate data is gathered, verified, and turned into real-world environmental and financial impact.
+            We are a team of innovators committed to transforming the way climate data is gathered, verified, and turned into real-world environmental and financial impact.
           </p>
         </motion.div>
 
@@ -212,7 +231,7 @@ const Team = () => {
           <h3 className="text-3xl md:text-4xl font-bold mb-4 text-green-500">ADVISORY BOARD</h3>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-6" />
           <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-300">
-            Root Tra's advisory board is an exceptional group of global experts who are actively shaping the future of their respective industries. Their backgrounds include serving on international climate panels, leadership roles in global environmental organizations, and senior positions in finance and technology firms. This representation covers critical areas such as biochar science, climate finance, fintech, monitoring and evaluation, AI/ML, financial indices, cybersecurity, data integrity, and climate policy.
+            Root Tra's advisory board is an exceptional group of global experts who are actively shaping the future of their respective industries. Their backgrounds include serving on international climate panels, leadership roles in global environmental organizations, and senior positions in finance, technology firms and Universities. This representation covers critical areas such as biochar science, climate finance, fintech, monitoring and evaluation, AI/ML, financial indices, cybersecurity, data integrity, and climate policy.
           </p>
         </motion.div>
 
