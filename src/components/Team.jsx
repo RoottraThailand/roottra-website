@@ -37,7 +37,7 @@ const advisoryBoard = [
     title: "Senior Advisor, Carbon Methodologies",
     university: "UNFCCC Art 6.4 Mechanism",
     imageUrl: "https://i.postimg.cc/Yh0xngZm/Ruy-Anaya-De-La-Rosa.webp",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/ruy-korscha-anaya-de-la-rosa-a5aa341/",
     bio: "Methodological Expert Panel member for the UN Climate Change Art 6.4 Mechanism and an expert in biochar and LCA methodologies. Ruy supports the scientific rigour of our end to end carbon removal and verification system."
   },
   {
@@ -46,7 +46,7 @@ const advisoryBoard = [
     title: "Advisor, AI Systems and Automation",
     university: "CEO Scrub AI",
     imageUrl: "https://i.postimg.cc/zy9pRBdx/Alex_Ley_2.png",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/alexander-ley/",
     bio: "Co founder and CEO of Scrub AI. Alex guides scalable enterprise AI platform design to support our digital verification and climate data automation systems."
   },
   {
