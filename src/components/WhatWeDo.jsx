@@ -7,20 +7,19 @@ const WhatWeDo = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    setCanvasSize();
 
     // Particle class
     class Particle {
-      x;
-      y;
-      size;
-      speedX;
-      speedY;
-      color;
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
@@ -31,12 +30,15 @@ const WhatWeDo = () => {
           Math.floor(Math.random() * 50)
         }, ${Math.random() * 0.5 + 0.1})`;
       }
+
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+
         if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
         if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
       }
+
       draw() {
         ctx.fillStyle = this.color;
         ctx.beginPath();
@@ -47,6 +49,7 @@ const WhatWeDo = () => {
 
     const particleArray = [];
     const numberOfParticles = 60;
+
     for (let i = 0; i < numberOfParticles; i++) {
       particleArray.push(new Particle());
     }
@@ -57,6 +60,7 @@ const WhatWeDo = () => {
           const dx = particleArray[a].x - particleArray[b].x;
           const dy = particleArray[a].y - particleArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
+
           if (distance < 100) {
             ctx.strokeStyle = `rgba(0, ${Math.floor(Math.random() * 100) + 155}, ${
               Math.floor(Math.random() * 50)
@@ -71,40 +75,34 @@ const WhatWeDo = () => {
       }
     }
 
+    let animationId;
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       for (let i = 0; i < particleArray.length; i++) {
         particleArray[i].update();
         particleArray[i].draw();
       }
+
       connectParticles();
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     }
 
     animate();
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", setCanvasSize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", setCanvasSize);
+      if (animationId) cancelAnimationFrame(animationId);
     };
   }, []);
 
+  // Re-ordered: Smallholder -> Open Field Burning -> Blockchain -> Data
   const services = [
     {
       id: 1,
-      icon: "database",
-      title: "Distributed Ledger Technology",
-      description:
-        "Our proprietary blockchain solution creates immutable records of carbon reduction, ensuring transparency and trust in environmental credits.",
-      image: "/distributed-ledger.webp",
-    },
-    {
-      id: 2,
       icon: "users",
       title: "Smallholder Farmer Solutions",
       description:
@@ -112,12 +110,20 @@ const WhatWeDo = () => {
       image: "/small-holder.webp",
     },
     {
-      id: 3,
+      id: 2,
       icon: "flame",
       title: "Mitigating Open Field Burning",
       description:
         "Our technologies offer alternatives to open field burning, reducing emissions while maintaining agricultural productivity.",
       image: "/open-field-burning.webp",
+    },
+    {
+      id: 3,
+      icon: "database",
+      title: "Distributed Ledger Technology",
+      description:
+        "Our proprietary blockchain solution creates immutable records of carbon reduction, ensuring transparency and trust in environmental credits.",
+      image: "/distributed-ledger.webp",
     },
     {
       id: 4,
@@ -130,7 +136,10 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <section id="what-we-do" className="py-20 text-gray-800 relative overflow-hidden">
+    <section
+      id="what-we-do"
+      className="py-20 text-gray-800 relative overflow-hidden"
+    >
       {/* Floating green particles */}
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
 
@@ -142,10 +151,14 @@ const WhatWeDo = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">What We Do</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            What We Do
+          </h2>
           <div className="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
           <p className="max-w-3xl mx-auto text-xl text-gray-200">
-            At Root Tra, we utilize distributed ledger technology and Edge Devices for data management to create sustainable solutions for farmers and our environment.
+            At Root Tra, we utilize distributed ledger technology and Edge Devices
+            for data management to create sustainable solutions for farmers and
+            our environment.
           </p>
         </motion.div>
 
@@ -177,8 +190,12 @@ const WhatWeDo = () => {
                   {service.icon === "flame" && <FlameIcon />}
                   {service.icon === "bar-chart" && <BarChartIcon />}
                 </div>
-                <h3 className="text-lg font-bold mb-2 text-center">{service.title}</h3>
-                <p className="text-sm text-gray-200 text-center">{service.description}</p>
+                <h3 className="text-lg font-bold mb-2 text-center">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-gray-200 text-center">
+                  {service.description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -190,7 +207,12 @@ const WhatWeDo = () => {
 
 // SVG icons
 const DatabaseIcon = () => (
-  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-8 h-8 text-green-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -201,7 +223,12 @@ const DatabaseIcon = () => (
 );
 
 const UsersIcon = () => (
-  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-8 h-8 text-green-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -212,7 +239,12 @@ const UsersIcon = () => (
 );
 
 const FlameIcon = () => (
-  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-8 h-8 text-green-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -229,7 +261,12 @@ const FlameIcon = () => (
 );
 
 const BarChartIcon = () => (
-  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-8 h-8 text-green-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
