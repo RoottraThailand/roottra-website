@@ -108,7 +108,7 @@ const WhatWeDo = () => {
       icon: "users",
       title: "Smallholder Farmer Solutions",
       description:
-        "We connect small-scale farmers to global carbon markets, providing them with technology and knowledge to participate in sustainable practices.",
+        "We connect small-scale farmers to global carbon markets, providing them with new revenue streams, without the technological hurdles.",
       image: "/small-holder.webp",
     },
     {
