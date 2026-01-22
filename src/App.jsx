@@ -6,7 +6,7 @@ import WhatWeDo from './components/WhatWeDo.jsx';
 import LandscapeSection from './components/LandscapeSection.jsx';
 import Team from './components/Team.jsx';
 import OurStory from './components/OurStory.jsx';
-import OurWork from './components/OurWork.jsx';
+//import OurWork from './components/OurWork.jsx';
 import Footer from './components/Footer.jsx';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       <LandscapeSection />
       <Team />
       <OurStory />
-      <OurWork />
+      {/* <OurWork /> */}
       <Footer />
     </div>
   );
