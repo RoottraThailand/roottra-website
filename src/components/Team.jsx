@@ -41,15 +41,6 @@ const advisoryBoard = [
     bio: "Methodological Expert Panel member for the UN Climate Change Art 6.4 Mechanism and an expert in biochar and LCA methodologies. Ruy supports the scientific rigour of our end to end carbon removal and verification system."
   },
   {
-    id: "a00",
-    name: "Alex Ley",
-    title: "Advisor, AI Systems and Automation",
-    university: "CEO Scrub AI",
-    imageUrl: "https://i.postimg.cc/zy9pRBdx/Alex_Ley_2.png",
-    linkedinUrl: "https://www.linkedin.com/in/alexander-ley/",
-    bio: "Co founder and CEO of Scrub AI. Alex guides scalable enterprise AI platform design to support our digital verification and climate data automation systems."
-  },
-  {
     id: "a1",
     name: "Apiniti Jotisankasa",
     title: "Geo Enviromental Engineer and IoT Sensors",
@@ -64,6 +55,15 @@ const advisoryBoard = [
     university: "Kasetsart University",
     imageUrl: "https://i.postimg.cc/zD2qBR43/Jarudej.jpg",
     linkedinUrl: "https://www.linkedin.com/in/jarudej-asingsamanunt/",
+  },
+  {
+    id: "a3",
+    name: "Alex Ley",
+    title: "Advisor, AI Systems and Automation",
+    university: "CEO Scrub AI",
+    imageUrl: "https://i.postimg.cc/zy9pRBdx/Alex_Ley_2.png",
+    linkedinUrl: "https://www.linkedin.com/in/alexander-ley/",
+    bio: "Co founder and CEO of Scrub AI. Alex guides scalable enterprise AI platform design to support our digital verification and climate data automation systems."
   },
 ];
 
